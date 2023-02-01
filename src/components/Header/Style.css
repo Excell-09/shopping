@@ -1,0 +1,49 @@
+.logo-nav {
+  width: 5rem;
+}
+
+.profile-nav {
+  width: 2.3rem;
+  display: inline-block;
+}
+
+.nav_link a {
+  color: rgb(142, 142, 142);
+  font-weight: 500;
+  text-decoration: none;
+}
+.nav_link a:hover {
+  color: rgb(142, 142, 142);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.hover-active {
+  color: rgb(7, 7, 7) !important;
+  font-weight: 700 !important;
+}
+
+.hover-active:hover {
+  color: rgb(6, 6, 6) !important;
+  font-weight: 700 !important;
+}
+
+.notif-display {
+  position: absolute;
+  content: '';
+  top: -3px;
+  right: -4px;
+  background-color: red;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  width: 18px;
+  height: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.pointer {
+  cursor: pointer;
+}
