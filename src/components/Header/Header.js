@@ -6,16 +6,19 @@ import logo from './../../assets/logo.png';
 import profile from './../../assets/profile.jpg';
 import './Style.css';
 import { motion } from 'framer-motion';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import NavbarMobile from '../NavbarMobile/NavbarMobile';
+import { useAppContext } from '../../context/AppContext';
 
+export const NAVLINK = [
+  { display: 'Home', to: '/' },
+  { display: 'Shop', to: '/shop' },
+  { display: 'Cart', to: '/cart' },
+];
 const Header = () => {
-  const NAVLINK = [
-    { display: 'Home', to: '/' },
-    { display: 'Shop', to: '/shop' },
-    { display: 'Cart', to: '/cart' },
-  ];
-
+  const { toggelNav } = useAppContext();
   return (
-    <header className=''>
+    <header className={`position-fixed top-0 start-0 w-100 bg-white z-1000`}>
       <Container>
         <div className='d-flex justify-content-between align-items-center py-3'>
           <div className='logo-nav pointer'>
@@ -26,7 +29,7 @@ const Header = () => {
             />
           </div>
 
-          <div className='d-flex gap-4 nav_link'>
+          <div className='gap-4 nav_link d-none d-sm-flex'>
             {NAVLINK.map((item, i) => {
               return (
                 <NavLink
@@ -50,16 +53,24 @@ const Header = () => {
 
             <span className='profile-nav '>
               <motion.img
-                whileTap={{scale:1.2}}
+                whileTap={{ scale: 1.2 }}
                 className='rounded-5 pointer'
                 width={'100%'}
                 src={profile}
                 alt='profile'
               />
             </span>
+
+            <GiHamburgerMenu
+              size={'2rem'}
+              className='d-sm-none'
+              onClick={() => toggelNav()}
+            />
           </div>
         </div>
       </Container>
+
+      <NavbarMobile />
     </header>
   );
 };

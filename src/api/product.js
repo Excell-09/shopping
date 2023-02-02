@@ -1,8 +1,12 @@
 import axios from 'axios';
 
 const apiProducts = async (fn) => {
-  const {data} = await axios('https://dummyjson.com/products');
-  return fn(data.products);
+  try {
+    const { data } = await axios('https://fakestoreapi.com/products');
+    return fn(data);
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 export default apiProducts;

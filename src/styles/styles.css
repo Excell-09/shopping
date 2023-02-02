@@ -1,0 +1,35 @@
+.img__products__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img__product {
+  width: 135px;
+  height: 135px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.hover-card {
+  transition: all 0.25s;
+}
+
+.hover-card:hover {
+  background-color: white;
+  transform: scale(0.95);
+}
+
+.promo__Image {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  object-position: center;
+  background-image: none;
+}
+
+@media (max-width: 768px) {
+  .align-sm-center {
+    text-align: center !important;
+  }
+}
