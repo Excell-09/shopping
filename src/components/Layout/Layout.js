@@ -8,9 +8,9 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <div>
+      <main className='bg-light'>
         <Router />
-      </div>
+      </main>
       <Footer />
     </>
   );

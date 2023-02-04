@@ -11,17 +11,19 @@ import Loading from '../components/Loading/Loading';
 import TimePromo from '../components/UI/TimePromo';
 
 const Home = () => {
-  const year = new Date().getFullYear();
-  const { getProducts, products, isloading } = useAppContext();
-  const trendingProduct = products.slice(0, 4);
-  const bestSeller = products.slice(4, 12);
-  const newArrive = products.slice(12, 20);
-  const promoProduct = products[products.length - 4];
-
+  const { getProducts } = useAppContext();
+  
   useEffect(() => {
     getProducts();
     // eslint-disable-next-line
   }, []);
+
+  const year = new Date().getFullYear();
+  const { products, isloading } = useAppContext();
+  const trendingProduct = products.slice(0, 4);
+  const bestSeller = products.slice(4, 12);
+  const newArrive = products.slice(12, 20);
+  const promoProduct = products[products.length - 4];
 
   return (
     <>
@@ -65,7 +67,7 @@ const Home = () => {
 
       <Services />
 
-      <section className='mt-5'>
+      <section className='my-5'>
         <Container>
           <Row>
             <Col lg={12}>
@@ -78,7 +80,7 @@ const Home = () => {
                 <Loading />
               </Col>
             ) : (
-              <ProductsList products={trendingProduct} />
+              <ProductsList product={trendingProduct} />
             )}
           </Row>
         </Container>
@@ -86,18 +88,18 @@ const Home = () => {
 
       {isloading === false && (
         <>
-          <section className='mt-5'>
+          <section className='my-5'>
             <Container>
               <Row>
                 <Col lg={12}>
                   <h2 className='text-center mb-4 fw-bold'>Trending Product</h2>
                 </Col>
-                <ProductsList products={bestSeller} />
+                <ProductsList product={bestSeller} />
               </Row>
             </Container>
           </section>
 
-          <section className='mt-5 bg-dark p-5'>
+          <section className='my-5 bg-dark p-5'>
             <Container>
               <Row>
                 <Col
@@ -130,13 +132,13 @@ const Home = () => {
             </Container>
           </section>
 
-          <section className='mt-5'>
+          <section className='my-5'>
             <Container>
               <Row>
                 <Col lg={12}>
                   <h2 className='text-center mb-4 fw-bold'>New Arrive</h2>
                 </Col>
-                <ProductsList products={newArrive} />
+                <ProductsList product={newArrive} />
               </Row>
             </Container>
           </section>

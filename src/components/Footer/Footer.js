@@ -11,11 +11,10 @@ const Footer = () => {
   return (
     <footer className='bg-dark mt-5'>
       <Container>
-        <Row className='text-white p-5 pb-3'>
+        <Row className='text-white py-5 px-1 p-lg-5'>
           <Col
             lg={5}
             md={6}
-            xs={6}
             className='mb-4'>
             <div className='logo-nav pointer'>
               <img
@@ -29,7 +28,6 @@ const Footer = () => {
           <Col
             lg={2}
             md={6}
-            xs={6}
             className='mb-4'>
             <div>
               <ListGroup>
@@ -61,7 +59,6 @@ const Footer = () => {
           <Col
             lg={2}
             md={6}
-            xs={6}
             className='mb-4'>
             <div>
               <ListGroup>
@@ -100,7 +97,6 @@ const Footer = () => {
           <Col
             lg={3}
             md={6}
-            xs={6}
             className='mb-4'>
             <div>
               <ListGroup>

@@ -21,6 +21,7 @@ const NavbarMobile = () => {
             <NavLink
               key={i}
               to={item.to}
+              onClick={() => toggelNav()}
               className={(navClass) => (navClass.isActive ? 'hover-active text-center p-3' : 'text-center p-3')}>
               {item.display}
             </NavLink>

@@ -1,0 +1,18 @@
+.search-box {
+  border: 1px solid rgb(154, 154, 154);
+  border-radius: 10px;
+  background-color: white;
+  padding: 0 14px;
+}
+
+.form-control {
+  outline: none !important;
+  border: none !important;
+  padding-left: 0 !important;
+}
+.form-control:focus {
+  outline: none !important;
+  border: none !important;
+  padding-left: 0 !important;
+  box-shadow: none !important;
+}

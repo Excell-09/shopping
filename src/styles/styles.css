@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.min-vh-anterna{
+  min-height: 87vh !important;
+}
+
 .img__product {
   width: 135px;
   height: 135px;
@@ -32,4 +36,8 @@
   .align-sm-center {
     text-align: center !important;
   }
+}
+
+.btn-add{
+  font-size: 2.5rem;
 }

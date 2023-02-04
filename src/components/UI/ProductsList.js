@@ -1,10 +1,11 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 
-const ProductsList = ({ products }) => {
+const ProductsList = ({ product }) => {
   return (
     <>
-      {products.map((item, i) => {
+      {product.length === 0 && <h4 className='text-center'>Product Not Found</h4>}
+      {product.map((item, i) => {
         return (
           <ProductCard
             key={i}

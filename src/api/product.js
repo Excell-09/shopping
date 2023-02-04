@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const apiProducts = async (fn) => {
+const apiProducts = async (url, fn) => {
   try {
-    const { data } = await axios('https://fakestoreapi.com/products');
-    return fn(data);
+    const { data } = await axios(url);
+    return  fn(data);
   } catch (err) {
     throw new Error(err);
   }

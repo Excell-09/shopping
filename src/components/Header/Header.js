@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import NavbarMobile from '../NavbarMobile/NavbarMobile';
 import { useAppContext } from '../../context/AppContext';
+import { useSelector } from 'react-redux';
 
 export const NAVLINK = [
   { display: 'Home', to: '/' },
@@ -17,8 +18,9 @@ export const NAVLINK = [
 ];
 const Header = () => {
   const { toggelNav } = useAppContext();
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   return (
-    <header className={`position-fixed top-0 start-0 w-100 bg-white z-1000`}>
+    <header className={`position-sticky top-0 start-0 w-100 bg-white z-1000`}>
       <Container>
         <div className='d-flex justify-content-between align-items-center py-3'>
           <div className='logo-nav pointer'>
@@ -35,7 +37,8 @@ const Header = () => {
                 <NavLink
                   className={(navClass) => (navClass.isActive ? 'hover-active' : '')}
                   key={i}
-                  to={item.to}>
+                  to={item.to}
+                  reloadDocument>
                   {item.display}
                 </NavLink>
               );
@@ -48,7 +51,7 @@ const Header = () => {
             </span>
             <span className='position-relative pointer'>
               <BiShoppingBag size={'1.7rem'} />
-              <small className='notif-display'>1</small>
+              <small className='notif-display'>{totalQuantity}</small>
             </span>
 
             <span className='profile-nav '>

@@ -13,10 +13,12 @@ const Services = () => {
         <Row>
           <Col
             lg='3'
-            md='4'>
+            md='4'
+            className='mb-3'
+            >
             <motion.div
               whileHover={{ scale: 1.15 }}
-              className='d-flex align-items-center justify-content-center gap-2 p-3 bg-success'>
+              className='d-flex align-items-center justify-content-sm-center gap-2 p-3 bg-success '>
               <FaMotorcycle
                 size={'3.5rem'}
                 className='rounded-5 text-white p-2 bg-dark'
@@ -29,10 +31,12 @@ const Services = () => {
           </Col>
           <Col
             lg='3'
-            md='4'>
+            md='4'
+            className='mb-3'
+            >
             <motion.div
               whileHover={{ scale: 1.15 }}
-              className='d-flex align-items-center justify-content-center gap-2 p-3  bg-info'>
+              className='d-flex align-items-center justify-content-sm-center gap-2 p-3  bg-info'>
               <FaMoneyBillAlt
                 size={'3.5rem'}
                 className='rounded-5 text-white p-2 bg-dark'
@@ -45,26 +49,30 @@ const Services = () => {
           </Col>
           <Col
             lg='3'
-            md='4'>
+            md='4'
+            className='mb-3'
+            >
             <motion.div
               whileHover={{ scale: 1.15 }}
-              className='d-flex align-items-center justify-content-center gap-2 p-3  bg-warning'>
+              className='d-flex align-items-center justify-content-sm-center gap-2 p-3  bg-warning'>
               <AiFillStar
                 size={'3.5rem'}
                 className='rounded-5 text-white p-2 bg-dark'
               />
               <div>
-                <h6 className='fw-bold fs-5'>Original 100%</h6>
+                <h6 className='fw-bold fs-5 text-nowrap'>Original 100%</h6>
                 <p className='text-white'>Lorem ipsum dolor sit amet.</p>
               </div>
             </motion.div>
           </Col>
           <Col
             lg='3'
-            md='4'>
+            md='4'
+            className='mb-3'
+            >
             <motion.div
               whileHover={{ scale: 1.15 }}
-              className='d-flex align-items-center justify-content-center gap-2 p-3  bg-primary'>
+              className='d-flex align-items-center justify-content-sm-center gap-2 p-3  bg-primary'>
               <BiPackage
                 size={'3.5rem'}
                 className='rounded-5 text-white p-2 bg-dark'
