@@ -65,6 +65,7 @@ const Footer = () => {
                 <h6>Pages</h6>
                 <ListGroup.Item className='bg-transparent ps-0'>
                   <Link
+                    reloadDocument
                     className='text-muted'
                     to={'/'}>
                     Home
@@ -72,6 +73,7 @@ const Footer = () => {
                 </ListGroup.Item>
                 <ListGroup.Item className='bg-transparent ps-0'>
                   <Link
+                    reloadDocument
                     className='text-muted'
                     to={'shop'}>
                     Shop
@@ -79,6 +81,7 @@ const Footer = () => {
                 </ListGroup.Item>
                 <ListGroup.Item className='bg-transparent ps-0'>
                   <Link
+                    reloadDocument
                     className='text-muted'
                     to={'login'}>
                     Login
@@ -86,6 +89,7 @@ const Footer = () => {
                 </ListGroup.Item>
                 <ListGroup.Item className='bg-transparent ps-0'>
                   <Link
+                    reloadDocument
                     className='text-muted'
                     to={'pricacy'}>
                     Privacy Policy

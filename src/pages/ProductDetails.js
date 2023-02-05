@@ -7,22 +7,38 @@ import Loading from './../components/Loading/Loading';
 import './../styles/productDetail.css';
 import convertusdtoidr from './../utils/convertusdtoidr';
 import ProductsList from './../components/UI/ProductsList';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../redux/slice/cartSlice';
+import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
   const { products, getProductById, isloading, getProductRecomedation, productsRecomendation, isloadingReco } = useAppContext();
+  const { pathname } = useLocation();
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getProductById(id);
     getProductRecomedation();
-
+    window.scrollTo(0, 0);
     //eslint-disable-next-line
-  }, []);
-
-  console.log(productsRecomendation);
+  }, [pathname]);
 
   let { title, image, description, price, rating } = products;
-  price = new convertusdtoidr(price).formatString();
+  const priceDisplay = new convertusdtoidr(price).formatString();
+
+  const handleAddToCart = (e) => {
+    dispatch(
+      cartActions.addItem({
+        id,
+        title,
+        image,
+        price,
+      })
+    );
+    toast.success(title + ' PRODUCT ADDED');
+  };
 
   return (
     <section>
@@ -60,9 +76,10 @@ const ProductDetails = () => {
                   <div className='text-muted'> / From {rating?.rate && rating.count} People</div>
                 </div>
                 <p>{description}</p>
-                <h5 className='text-danger fw-bold'>Rp {price}</h5>
+                <h5 className='text-danger fw-bold fs-2'>Rp {priceDisplay}</h5>
                 <Button
-                  variant='info'
+                  onClick={handleAddToCart}
+                  variant='dark'
                   className='fw-bold text-light shadow mt-3'>
                   Add To Cart
                 </Button>
@@ -72,7 +89,7 @@ const ProductDetails = () => {
           </Row>
           <Row className='my-5'>
             <Col lg={12}>
-              <h3>Recomendasi</h3>
+              <h3 className='mb-3'>Rekomendasi</h3>
             </Col>
             {isloadingReco ? (
               <Col

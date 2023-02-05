@@ -8,17 +8,17 @@ import { useDispatch } from 'react-redux';
 import { cartActions } from '../../redux/slice/cartSlice';
 import { toast } from 'react-toastify';
 
-const ProductCard = ({ id, title, price, thumbnail, category, sameUrl }) => {
+const ProductCard = ({ id, title, price, thumbnail, category }) => {
   let money = new convertusdtoidr(price).formatString();
   const dispatch = useDispatch();
 
   const addToCart = () => {
     dispatch(
       cartActions.addItem({
-        id: id,
-        title: title,
+        id,
+        title,
         image: thumbnail,
-        totalPrice: price,
+        price,
       })
     );
     toast.success(title + ' PRODUCT ADDED');
@@ -31,7 +31,7 @@ const ProductCard = ({ id, title, price, thumbnail, category, sameUrl }) => {
       sm={6}
       className='hover-card bg-white'>
       <div className='text-dark d-flex justify-content-between flex-column p-4 h-100'>
-        <div className='img__products__container'>
+        <div className='img__products__container mb-3'>
           <Link to={`/shop/${id}`}>
             <img
               className='img__product'

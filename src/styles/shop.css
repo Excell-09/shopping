@@ -5,12 +5,12 @@
   padding: 0 14px;
 }
 
-.form-control {
+.Myform-control {
   outline: none !important;
   border: none !important;
   padding-left: 0 !important;
 }
-.form-control:focus {
+.Myform-control:focus {
   outline: none !important;
   border: none !important;
   padding-left: 0 !important;

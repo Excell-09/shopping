@@ -14,6 +14,7 @@ class convertusdtoidr {
     });
     return this.amount;
   }
+
 }
 
 export default convertusdtoidr;

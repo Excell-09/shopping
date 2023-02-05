@@ -115,7 +115,7 @@ const Shop = () => {
                 onChange={handleInput}
                 type='text'
                 placeholder='Search...'
-                className='bg-transparent border-none'
+                className='bg-transparent border-none Myform-control'
               />
               <span>
                 <i className='ri-search-line pointer fs-4'></i>

@@ -19,6 +19,7 @@ const NavbarMobile = () => {
         {NAVLINK.map((item, i) => {
           return (
             <NavLink
+              reloadDocument
               key={i}
               to={item.to}
               onClick={() => toggelNav()}

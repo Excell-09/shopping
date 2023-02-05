@@ -1,0 +1,7 @@
+.img-cart {
+  width: 25px;
+}
+.img-cart > img {
+  width: 100% !important;
+  background-size: cover;
+}

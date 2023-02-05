@@ -10,6 +10,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import NavbarMobile from '../NavbarMobile/NavbarMobile';
 import { useAppContext } from '../../context/AppContext';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const NAVLINK = [
   { display: 'Home', to: '/' },
@@ -19,6 +20,12 @@ export const NAVLINK = [
 const Header = () => {
   const { toggelNav } = useAppContext();
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const navigate = useNavigate();
+
+  const navigateToCart = () => {
+    navigate('cart');
+  };
+
   return (
     <header className={`position-sticky top-0 start-0 w-100 bg-white z-1000`}>
       <Container>
@@ -49,7 +56,9 @@ const Header = () => {
               <AiOutlineHeart size={'1.7rem'} />
               <small className='notif-display'>1</small>
             </span>
-            <span className='position-relative pointer'>
+            <span
+              className='position-relative pointer'
+              onClick={navigateToCart}>
               <BiShoppingBag size={'1.7rem'} />
               <small className='notif-display'>{totalQuantity}</small>
             </span>

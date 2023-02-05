@@ -91,7 +91,7 @@ const AppProvider = ({ children }) => {
     return;
   };
 
-  return <appContext.Provider value={{ ...state, getProducts, toggelNav, getProductById, getProductRecomedation }}>{children}</appContext.Provider>;
+  return <appContext.Provider value={{ ...state, getProducts, toggelNav, getProductById, getProductRecomedation, startLoading, stopLoading }}>{children}</appContext.Provider>;
 };
 
 export const useAppContext = () => useContext(appContext);
