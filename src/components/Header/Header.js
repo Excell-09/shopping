@@ -27,7 +27,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`position-sticky top-0 start-0 w-100 bg-white z-1000`}>
+    <header className={`position-sticky top-0 start-0 w-100 bg-white z-1000 shadow`}>
       <Container>
         <div className='d-flex justify-content-between align-items-center py-3'>
           <div className='logo-nav pointer'>

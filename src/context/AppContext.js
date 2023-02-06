@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from 'react';
 import apiProducts from '../api/product';
 import reducer from './reducer';
+// import MyAlert from '../utils/displayNotif';
 
 const appContext = createContext();
 
@@ -10,10 +11,22 @@ const initialState = {
   openNav: false,
   productsRecomendation: [],
   isloadingReco: false,
+  alertMessage: '',
+  alertType: '',
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const alertSuccess = (message) => {
+    dispatch({ type: 'SET_ALERT', payload: { variant: 'success', message } });
+  };
+  const alertError = (message) => {
+    dispatch({ type: 'SET_ALERT', payload: { variant: 'danger', message } });
+  };
+  const clearAlert = () => {
+    dispatch({ type: 'CLEAR_ALERT' });
+  };
 
   const toggelNav = () => {
     dispatch({ type: 'OPEN_NAV' });
@@ -91,7 +104,11 @@ const AppProvider = ({ children }) => {
     return;
   };
 
-  return <appContext.Provider value={{ ...state, getProducts, toggelNav, getProductById, getProductRecomedation, startLoading, stopLoading }}>{children}</appContext.Provider>;
+  return (
+    <appContext.Provider value={{ ...state, alertSuccess, clearAlert, alertError, getProducts, toggelNav, getProductById, getProductRecomedation, startLoading, stopLoading }}>
+      {children}
+    </appContext.Provider>
+  );
 };
 
 export const useAppContext = () => useContext(appContext);

@@ -6,15 +6,15 @@ import convertIdr from './../utils/convertusdtoidr';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const intialState = {
-  name: '',
-  email: '',
-  phone: '',
-  address: '',
-  city: '',
-  postalCode: '',
-  country: '',
-};
+// const intialState = {
+//   name: '',
+//   email: '',
+//   phone: '',
+//   address: '',
+//   city: '',
+//   postalCode: '',
+//   country: '',
+// };
 
 const Checkout = () => {
   const totalQty = useSelector((state) => state.cart.totalQuantity);
@@ -32,8 +32,8 @@ const Checkout = () => {
         <h3 className='mb-3'>Checkout</h3>
         <Row>
           <Col
-            lg='8'
-            className='bg-white p-4 mb-4'>
+            lg={8}
+            className='bg-white p-4 mb-4 shadow'>
             <h6>Billing Information</h6>
             <Form>
               <Form.Group className='mt-3'>
@@ -95,8 +95,8 @@ const Checkout = () => {
             </Form>
           </Col>
           <Col
-            lg='4'
-            className='bg-dark p-4 text-white mb-4'>
+            lg={4}
+            className='bg-dark p-4 text-white mb-4 shadow'>
             <div className='d-flex flex-column gap-2'>
               <h6 className='d-flex justify-content-between'>
                 Total Quantity : <span className='fw-bold'>{totalQty} items</span>

@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main className='bg-light'>
+      <main className='bg-light pb-5'>
         <Router />
       </main>
       <Footer />

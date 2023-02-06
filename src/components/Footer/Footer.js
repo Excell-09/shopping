@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className='bg-dark mt-5'>
+    <footer className='bg-dark'>
       <Container>
         <Row className='text-white py-5 px-1 p-lg-5'>
           <Col

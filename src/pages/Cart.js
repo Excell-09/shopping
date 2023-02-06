@@ -30,7 +30,7 @@ const Cart = () => {
               <h3>Cart</h3>
               <Col
                 lg={9}
-                className='bg-white p-3 mb-3'>
+                className='bg-white p-3 mb-3 shadow'>
                 <table className='table bordered'>
                   <thead>
                     <tr>
@@ -54,7 +54,7 @@ const Cart = () => {
                 </table>
               </Col>
               <Col lg={3}>
-                <div className='bg-white p-3'>
+                <div className='bg-white p-3 shadow'>
                   <div className='d-flex justify-content-between align-items-center'>
                     <h6 className='d-block'>subtotal</h6>
                     <h6 className='fw-bold text-danger d-block'>Rp {totalDisplay}</h6>

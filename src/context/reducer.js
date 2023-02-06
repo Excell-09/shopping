@@ -21,6 +21,14 @@ const reducer = (state, action) => {
   if (action.type === 'OPEN_NAV') {
     return { ...state, openNav: !state.openNav };
   }
+
+  if (action.type === 'SET_ALERT') {
+    return { ...state, alertType: action.payload.variant, alertMessage: action.payload.message };
+  }
+
+  if (action.type === 'CLEAR_ALERT') {
+    return { ...state, alertType: '', alertMessage: '' };
+  }
 };
 
 export default reducer;

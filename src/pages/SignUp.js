@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Container, Form, Row, Col, Button, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { auth } from '../firebase.config';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import Loading from './../components/Loading/Loading';
 import { useAppContext } from './../context/AppContext';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { setDoc, doc } from 'firebase/firestore';
 import { storage } from '../firebase.config';
@@ -19,28 +19,12 @@ const initialState = {
   passwordConfirm: '',
 };
 
-const notif = {
-  type: '',
-  message: '',
-};
-
 const SignUp = () => {
   const [values, setValues] = useState(initialState);
-  const [response, setResponese] = useState(notif);
-  const [file, setFile] = useState('');
+  const [file, setFile] = useState(null);
   const { pathname } = useLocation();
-  const { isloading, startLoading, stopLoading } = useAppContext();
-
-  const apperNotif = (status, messages) => {
-    if (status === 'error') {
-      setResponese({ type: 'danger', message: messages });
-      return;
-    }
-    setResponese({ type: 'success', message: messages });
-  };
-  const disbaleNotif = () => {
-    setResponese({ type: '', message: '' });
-  };
+  const { isloading, startLoading, stopLoading, alertSuccess, alertError, clearAlert, alertMessage, alertType } = useAppContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,68 +33,71 @@ const SignUp = () => {
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-  const handleInputPhoto = (e) => {
-    setFile(e.target.files[0]);
+
+  const clearInput = () => {
+    setValues({ ...values, ...initialState });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { username, email, password, passwordConfirm } = values;
     startLoading();
-    disbaleNotif();
+    clearAlert();
 
     if (password !== passwordConfirm) {
-      apperNotif('error', 'Password Not Match');
+      alertError('Password Not Match');
+      console.log(alertMessage);
       stopLoading();
       return;
     }
 
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
-      const storageRef = await ref(storage, `images/${Date.now() + username}`);
-      const uploadTask = await uploadBytesResumable(storageRef, file);
 
-      uploadTask.on(
-        (error) => {
-          apperNotif('error', error.message);
-        },
-        async () => {
-          await getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateProfile(user, {
-              displayName: username,
-              photoURL: downloadURL,
-            });
+      // this code not running why?
+      const storageRef = ref(storage, `images/${Date.now() + ' ' + username}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
-            await setDoc(doc(db, 'users', user.uid), {
-              uid: user.uid,
-              displayName: username,
-              email,
-              photoURL: downloadURL,
-            });
+      uploadTask.then(() => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          await updateProfile(user, {
+            displayName: username,
+            photoURL: downloadURL,
           });
-        }
-      );
-    } catch (error) {
-      apperNotif('error', error);
-    }
+
+          await setDoc(doc(db, 'users', user.uid), {
+            uid: user.uid,
+            displayName: username,
+            email,
+            photoURL: downloadURL,
+          });
+        });
+      });
+      alertSuccess('Account Created, Redirect...');
+      clearInput();
+      setTimeout(() => {
+        navigate('/login');
+        stopLoading();
+        clearAlert();
+      }, 1500);
+    } catch (error) {}
     stopLoading();
     return;
   };
 
   return (
-    <section className='py-4'>
+    <section className='py-5'>
       <Container>
         <Row>
           <Col
             lg={6}
-            className='m-auto p-4 bg-white'>
+            className='m-auto p-4 bg-white shadow'>
             <h2 className='text-center'>Sign up</h2>
-            {response?.message && (
+            {alertMessage !== '' && (
               <Alert
-                variant={response.type}
+                variant={alertType}
                 className='text-center my-3'>
-                {response.message}
+                {alertMessage}
               </Alert>
             )}
             <Form
@@ -118,8 +105,9 @@ const SignUp = () => {
               autoComplete='off'
               autoCorrect='off'>
               <Form.Group className='mt-3'>
-                <Form.Label>username</Form.Label>
+                <Form.Label>Username</Form.Label>
                 <Form.Control
+                  disabled={isloading}
                   onChange={handleInput}
                   value={values.username}
                   type='text'
@@ -131,6 +119,7 @@ const SignUp = () => {
               <Form.Group className='mt-3'>
                 <Form.Label>Email</Form.Label>
                 <Form.Control
+                  disabled={isloading}
                   onChange={handleInput}
                   value={values.email}
                   type='email'
@@ -143,6 +132,7 @@ const SignUp = () => {
               <Form.Group className='mt-3'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  disabled={isloading}
                   onChange={handleInput}
                   value={values.password}
                   type='password'
@@ -154,6 +144,7 @@ const SignUp = () => {
               <Form.Group className='mt-3'>
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
+                  disabled={isloading}
                   onChange={handleInput}
                   value={values.passwordConfirm}
                   type='password'
@@ -165,7 +156,8 @@ const SignUp = () => {
               <Form.Group className='mt-3'>
                 <Form.Label>Photo Profile</Form.Label>
                 <Form.Control
-                  onChange={handleInputPhoto}
+                  disabled={isloading}
+                  onChange={(e) => setFile(e.target.files[0])}
                   type='file'
                 />
               </Form.Group>
@@ -175,7 +167,7 @@ const SignUp = () => {
                 type='submit'
                 disabled={isloading}
                 className='w-100 my-3 d-flex justify-content-center align-items-center p-2'>
-                {isloading ? <Loading small /> : 'SignUp'}
+                {isloading ? <Loading small /> : 'Sign Up'}
               </Button>
               <p className='text-center'>
                 Already Have Account? <Link to={'/login'}>Register</Link>
