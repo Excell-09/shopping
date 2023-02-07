@@ -104,7 +104,7 @@ const Footer = () => {
             className='mb-4'>
             <div>
               <ListGroup>
-                <h6>Top Categories</h6>
+                <h6>Contact</h6>
                 <ListGroup.Item className='bg-transparent ps-0'>
                   <GoLocation className='text-muted me-2' />
                   <span className='text-muted'>Singkawang Barat</span>
@@ -123,7 +123,7 @@ const Footer = () => {
         </Row>
         <Row>
           <Col lg={12}>
-            <span className='d-block text-muted text-center mb-4'>Copyright {year}, developed by Excell. All rights reserved</span>
+            <span className='d-block text-muted text-center mb-4'>Api From fakeStoreApi, assets From FreePik, Create By Excell at {year}</span>
           </Col>
         </Row>
       </Container>
