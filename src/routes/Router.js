@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 // pages
 
 import { Home, Cart, Checkout, Login, ProductDetails, Shop, SignUp } from './../pages';
+import ProtectRoute from './ProtectRoute';
 
 const router = () => {
   return (
@@ -18,7 +19,11 @@ const router = () => {
         />
         <Route
           path='checkout'
-          element={<Checkout />}
+          element={
+            <ProtectRoute>
+              <Checkout />
+            </ProtectRoute>
+          }
         />
         <Route
           path='login'

@@ -6,6 +6,14 @@
   width: 2.3rem;
   display: inline-block;
 }
+.profile-nav > img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.profile-nav > div {
+  right: 0;
+  transform: translate(35%);
+}
 
 .nav_link a {
   color: rgb(142, 142, 142);
@@ -48,6 +56,6 @@
   cursor: pointer;
 }
 
-.w-30{
+.w-30 {
   width: 40%;
 }

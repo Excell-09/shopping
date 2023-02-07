@@ -16,7 +16,7 @@ const initialState = {
 const Login = () => {
   const [values, setValues] = useState(initialState);
   const { pathname } = useLocation();
-  const { isloading, startLoading, stopLoading, alertMessage, clearAlert, alertSuccess, alertError, alertType } = useAppContext();
+  const { isloading, startLoading, stopLoading, alertMessage, clearAlert, alertSuccess, alertError, alertType, store } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,7 +38,9 @@ const Login = () => {
     const { email, password } = values;
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      store.setLocal({ email: user.email, name: user.displayName, photoURL: user.photoURL });
+      store.setCookies({ token: user.accessToken });
       alertSuccess('Login Success, Redirect...');
       setTimeout(() => {
         clearInput();

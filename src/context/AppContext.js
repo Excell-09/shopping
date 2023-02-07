@@ -13,10 +13,13 @@ const initialState = {
   isloadingReco: false,
   alertMessage: '',
   alertType: '',
+  user: null,
+  token: '',
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  // const dispatchRedux = useDispatch();
 
   const alertSuccess = (message) => {
     dispatch({ type: 'SET_ALERT', payload: { variant: 'success', message } });
@@ -104,8 +107,36 @@ const AppProvider = ({ children }) => {
     return;
   };
 
+  class Store {
+    setLocal(user) {
+      user = JSON.stringify(user);
+
+      localStorage.setItem('user', user);
+    }
+
+    setCookies(user) {
+      let token = user.token;
+      let expired = new Date();
+      expired.setTime(expired.getTime() + 1000 * 60 * 60);
+      document.cookie = `token=${token} expires=${expired.toUTCString()} path='/'`;
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith('token=')) {
+          token = token.substring('token='.length + cookie.length);
+          break;
+        }
+      }
+    }
+    removeLocal() {
+      localStorage.removeItem('user');
+      document.cookie = 'cookiename=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    }
+  }
+  const store = new Store();
+
   return (
-    <appContext.Provider value={{ ...state, alertSuccess, clearAlert, alertError, getProducts, toggelNav, getProductById, getProductRecomedation, startLoading, stopLoading }}>
+    <appContext.Provider value={{ ...state, alertSuccess, clearAlert, alertError, getProducts, toggelNav, getProductById, getProductRecomedation, startLoading, stopLoading, store }}>
       {children}
     </appContext.Provider>
   );
