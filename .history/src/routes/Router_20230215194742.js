@@ -43,7 +43,7 @@ const router = () => {
           element={<SignUp />}
         />
         <Route
-          path='success'
+          path='payment'
           element={<Payment />}
         />
       </Route>

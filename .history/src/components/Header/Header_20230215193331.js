@@ -1,5 +1,6 @@
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { AiOutlineHeart } from 'react-icons/ai';
 import { BiShoppingBag } from 'react-icons/bi';
 import logo from './../../assets/logo.png';
 import profile from './../../assets/profile.jpg';
@@ -76,6 +77,10 @@ const Header = () => {
             })}
           </div>
           <div className='d-flex justify-content-between align-items-center gap-3'>
+            <span className='position-relative pointer'>
+              <AiOutlineHeart size={'1.7rem'} />
+              <small className='notif-display'>1</small>
+            </span>
             <span
               className='position-relative pointer'
               onClick={navigateToCart}>

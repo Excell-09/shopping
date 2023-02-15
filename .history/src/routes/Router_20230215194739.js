@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import Payment from '../pages/Payment';
 
 // pages
 
@@ -43,7 +42,7 @@ const router = () => {
           element={<SignUp />}
         />
         <Route
-          path='success'
+          path='payment'
           element={<Payment />}
         />
       </Route>

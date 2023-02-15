@@ -119,7 +119,7 @@ const Checkout = () => {
               </h5>
             </div>
             <Button
-              onClick={() => navigate('/success')}
+              onClick={() => navigate('/payment')}
               variant='light'
               className='mt-2'>
               Place An Order

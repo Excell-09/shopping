@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import './../styles/Cart.css';
@@ -13,8 +13,8 @@ const Cart = () => {
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const navigate = useNavigate();
   const totalDisplay = new convertusdtoidr(totalAmount).formatString();
-  const { pathname } = useLocation()
-  
+  const { pathname } = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -35,7 +35,6 @@ const Cart = () => {
                   <thead>
                     <tr>
                       <th>Image</th>
-                      <th>Title</th>
                       <th>Price</th>
                       <th>Qty</th>
                       <th>Delete</th>
@@ -99,7 +98,6 @@ const Tr = ({ item }) => {
           alt={item.title}
         />
       </td>
-      <td>{item.title}</td>
       <td>{displayItem}</td>
       <td>{item.quantity}pc</td>
       <td className='d-flex justify-content-center'>

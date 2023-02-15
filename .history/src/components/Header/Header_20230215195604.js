@@ -1,5 +1,6 @@
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { AiOutlineHeart } from 'react-icons/ai';
 import { BiShoppingBag } from 'react-icons/bi';
 import logo from './../../assets/logo.png';
 import profile from './../../assets/profile.jpg';

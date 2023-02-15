@@ -3,7 +3,7 @@ import { Container, Form, Col, Row, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import './../styles/checkout.css';
 import convertIdr from './../utils/convertusdtoidr';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 // const intialState = {
@@ -21,7 +21,7 @@ const Checkout = () => {
   let totalAmount = useSelector((state) => state.cart.totalAmount);
   const { pathname } = useLocation();
   totalAmount = new convertIdr(totalAmount).formatString();
-  const navigate = useNavigate();
+  const navigate = 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -119,7 +119,7 @@ const Checkout = () => {
               </h5>
             </div>
             <Button
-              onClick={() => navigate('/success')}
+              onClick={()=> navigate('/checkout')}
               variant='light'
               className='mt-2'>
               Place An Order
